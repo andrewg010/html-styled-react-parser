@@ -8,14 +8,14 @@ Ensure that you trust the HTML before using.
 
 ## Installation
 
-```
+```sh
 npm i html-styled-react-parser react styled-components
 
 ```
 
 ## Usage 
 
-```
+```jsx
 import Parser from 'html-styled-react-parser'
 import YourComponent from 'path/to/your/component'
 
@@ -35,7 +35,7 @@ const SomeComponent = () => (
 
 **or**
 
-```
+```jsx
 import { parse } from 'html-styled-react-parser'
 import YourComponent from 'path/to/your/component'
 
@@ -67,7 +67,7 @@ Specify the replacements you want to make using the a config object in the follo
 }
 
 Example:
-```
+```js
 {
   b: styled.b`color: blue;`
   imageofcat: () => <img src='link to cat image' alt='Pretty kitty cat'>
@@ -90,7 +90,7 @@ As this is a string, these props will be passed in as strings, if you want to do
 In some cases you may want to add custom styles to your component. This is possible through an addstyle attribute in the html string:
 
 Example:
-```
+```jsx
 const html = '<b addstyle="color: blue;">'
 ```
 
