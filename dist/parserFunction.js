@@ -4,9 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
-const styled_components_1 = __importDefault(require("styled-components"));
 const node_html_parser_1 = require("node-html-parser");
 const HTMLToReactComponent = (html, replacements) => {
+    if (typeof html !== 'string')
+        return [];
     const root = node_html_parser_1.parse(html);
     if (!root.childNodes.length)
         return [];
@@ -18,22 +19,16 @@ const HTMLToReactComponent = (html, replacements) => {
 };
 const replaceNodeWithComponent = (node, index, replacements) => {
     let Component = replacements[node.tagName] || node.tagName;
-    if (node.hasAttribute('addstyle'))
-        return getComponentWithAddedStyle(Component, node, index, replacements);
+    if (/number|boolean/.test(typeof Component))
+        return null;
+    if (typeof Component === 'object' && !Object.prototype.hasOwnProperty.call(Component, '$$typeof'))
+        return null;
     return getComponentWithProps(Component, node, index, replacements);
 };
 const getComponentWithProps = (Component, node, index, replacements) => {
     if (!node.childNodes.length)
         return react_1.default.createElement(Component, Object.assign({ suppressHydrationWarning: true }, node.attributes, { key: index }));
     return react_1.default.createElement(Component, Object.assign({ suppressHydrationWarning: true }, node.attributes, { key: index }), HTMLToReactComponent(node.innerHTML, replacements));
-};
-const getComponentWithAddedStyle = (Component, node, index, replacements) => {
-    if (typeof Component === 'object') {
-        Component = styled_components_1.default(Component) `${node.getAttribute('addstyle')}`;
-        return getComponentWithProps(Component, node, index, replacements);
-    }
-    const Wrapper = styled_components_1.default.div `${node.getAttribute('addstyle')}`;
-    return react_1.default.createElement(Wrapper, { key: index }, getComponentWithProps(Component, node, index, replacements));
 };
 exports.default = HTMLToReactComponent;
 //# sourceMappingURL=parserFunction.js.map

@@ -95,15 +95,3 @@ results in
 ```
 
 As this is a string, these props will be passed in as strings, if you want to do anything more complicated with objects you would need to handle that inside your component as required. For example using `JSON.parse()`
-
-### Applying custom styles through your HTML
-
-In some cases you may want to add custom styles to your component. This is possible through an addstyle attribute in the html string:
-
-Example:
-```jsx
-const html = '<b addstyle="color: blue;">'
-```
-
-#### Important
-If you are adding custom styles to a react component rather than a styled component, your component will be wrapped in a `styled('div')` in order to make this possible. You should consider that this will have impact on any style properties applied to your outermost element in your component as this will automatically make it `display: block;`.
