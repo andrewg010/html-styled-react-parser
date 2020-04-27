@@ -95,3 +95,17 @@ results in
 ```
 
 As this is a string, these props will be passed in as strings, if you want to do anything more complicated with objects you would need to handle that inside your component as required. For example using `JSON.parse()`
+
+### Importing replacements in multiple locations
+
+You can avoid having to import replacements into every location you use the component by creating a wrapper component to pass the replacements automatically and then using that instead.
+
+```jsx
+import Parser from 'html-styled-react-parser'
+
+const replacements = {}
+
+const ParserWrapper = ({ html }) => <Parser html={html} replacements={replacements} />
+
+export default ParserWrapper
+```
