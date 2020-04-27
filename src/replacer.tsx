@@ -39,7 +39,6 @@ type TReplaceNodeWithComponent = (node: HtmlNode, index: number, replacements: P
 
 const replaceNodeWithComponent: TReplaceNodeWithComponent = (node, index, replacements) => {
   let Component: StyledComponent<any, any> | React.FC = replacements[node.tagName] || node.tagName as any
-  if (node.hasAttribute('addstyle')) Component = styled(Component)`${node.getAttribute('addstyle')}`
 
   if (node.hasAttribute('addstyle')) return getComponentWithAddedStyle(Component, node, index, replacements)
   return getComponentWithProps(Component, node, index, replacements)

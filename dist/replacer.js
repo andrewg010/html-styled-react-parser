@@ -19,8 +19,6 @@ const HTMLToReactComponent = (html, replacements) => {
 const replaceNodeWithComponent = (node, index, replacements) => {
     let Component = replacements[node.tagName] || node.tagName;
     if (node.hasAttribute('addstyle'))
-        Component = styled_components_1.default(Component) `${node.getAttribute('addstyle')}`;
-    if (node.hasAttribute('addstyle'))
         return getComponentWithAddedStyle(Component, node, index, replacements);
     return getComponentWithProps(Component, node, index, replacements);
 };
