@@ -85,5 +85,5 @@ test('Deals with invalid objects in replacements by returning null', () => {
 test('Deals with invalid data type in replacements by returning null', () => {
   const html = '<string>bad object</string>'
   const wrapper = shallow(<Parser replacements={replacements as any} html={html} />)
-  console.log(wrapper.html())
+  expect(wrapper.html()).toEqual('')
 })
