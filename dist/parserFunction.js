@@ -36,4 +36,4 @@ const getComponentWithAddedStyle = (Component, node, index, replacements) => {
     return react_1.default.createElement(Wrapper, { key: index }, getComponentWithProps(Component, node, index, replacements));
 };
 exports.default = HTMLToReactComponent;
-//# sourceMappingURL=replacer.js.map
+//# sourceMappingURL=parserFunction.js.map

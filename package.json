@@ -2,7 +2,11 @@
   "name": "html-styled-react-parser",
   "version": "1.0.0",
   "description": "A React component to replace html strings with react and styled components",
-  "main": "./dist/parser.js",
+  "main": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrewghx/html-styled-react-parser.git"
+  },
   "scripts": {
     "build": "rm -rf ./dist/* && tsc",
     "test": "jest"

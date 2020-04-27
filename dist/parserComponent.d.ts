@@ -7,5 +7,5 @@ interface Props {
     html?: string;
     replacements: ParserReplacements;
 }
-declare const ContentParser: React.FC<Props>;
-export default ContentParser;
+declare const ParserComponent: React.FC<Props>;
+export default ParserComponent;

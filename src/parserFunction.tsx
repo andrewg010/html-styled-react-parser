@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { StyledComponent } from 'styled-components'
 import { parse } from 'node-html-parser'
-import { ParserReplacements } from './parser'
+import { ParserReplacements } from './parserComponent'
 
 interface TextNode {
   tagName?: string

@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyledComponent } from 'styled-components'
-import HTMLToReactComponent from './replacer'
+import HTMLToReactComponent from './parserFunction'
 
 export interface ParserReplacements {
   [key: string]: StyledComponent<any, any> | React.FC
@@ -11,6 +11,6 @@ interface Props {
   replacements: ParserReplacements
 }
 
-const ContentParser: React.FC<Props> = ({ html = '', replacements = {} }) => <>{HTMLToReactComponent(html, replacements)}</>
+const ParserComponent: React.FC<Props> = ({ html = '', replacements = {} }) => <>{HTMLToReactComponent(html, replacements)}</>
 
-export default ContentParser
+export default ParserComponent
