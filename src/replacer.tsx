@@ -41,13 +41,22 @@ const replaceNodeWithComponent: TReplaceNodeWithComponent = (node, index, replac
   let Component: StyledComponent<any, any> | React.FC = replacements[node.tagName] || node.tagName as any
   if (node.hasAttribute('addstyle')) Component = styled(Component)`${node.getAttribute('addstyle')}`
 
-  if (!node.childNodes.length) return <Component {...node.attributes} key={index} />
+  if (node.hasAttribute('addstyle')) return getComponentWithAddedStyle(Component, node, index, replacements)
+  return getComponentWithProps(Component, node, index, replacements)
+}
 
-  return (
-    <Component {...node.attributes} key={index}>
-      {HTMLToReactComponent(node.innerHTML, replacements)}
-    </Component>
-  )
+const getComponentWithProps = (Component: StyledComponent<any, any> | React.FC, node: HtmlNode, index: number, replacements: ParserReplacements) => {
+  if (!node.childNodes.length) return <Component suppressHydrationWarning={true} {...node.attributes} key={index} />
+  return <Component suppressHydrationWarning={true} {...node.attributes} key={index}>{HTMLToReactComponent(node.innerHTML, replacements)}</Component>
+}
+
+const getComponentWithAddedStyle = (Component: StyledComponent<any, any> | React.FC, node: HtmlNode, index: number, replacements: ParserReplacements) => {
+  if (typeof Component === 'object') {
+    Component = styled(Component)`${node.getAttribute('addstyle')}`
+    return getComponentWithProps(Component, node, index, replacements)
+  } 
+  const Wrapper = styled.div`${node.getAttribute('addstyle')}`
+  return <Wrapper key={index}>{getComponentWithProps(Component, node, index, replacements)}</Wrapper>
 }
 
 export default HTMLToReactComponent
