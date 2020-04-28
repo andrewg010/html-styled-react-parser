@@ -17,7 +17,11 @@
     "styled-components",
     "parser"
   ],
-  "author": "Andrew Griffiths",
+  "author": { 
+    "name" : "Andrew Griffiths",
+    "email" : "codeandrewg@gmail.com",
+    "url" : "https://www.griffithsa.co.uk"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/enzyme-adapter-react-16": "^1.0.6",
